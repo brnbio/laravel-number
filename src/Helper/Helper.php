@@ -72,6 +72,18 @@ class Helper
     }
 
     /**
+     * @param float $value
+     * @param int $decimals
+     * @param string $decimalPoint
+     * @param string $thousandsPoint
+     * @return string
+     */
+    public function percent(float $value, int $decimals = 2, string $decimalPoint = '.', string $thousandsPoint = ','): string
+    {
+        return $this->format($value * 100, $decimals, $decimalPoint, $thousandsPoint) . '%';
+    }
+
+    /**
      * @param string $template
      * @param array $placeholders
      * @return string
