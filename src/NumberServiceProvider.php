@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Brnbio\LaravelNumber;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -28,6 +29,7 @@ class NumberServiceProvider extends ServiceProvider
         $this->publishes([
             $this->getConfigFile() => config_path($this->getPackageName() . '.php'),
         ]);
+        $this->registerBladeDirectives();
     }
 
     /**
@@ -55,5 +57,19 @@ class NumberServiceProvider extends ServiceProvider
     private function getPackageName(): string
     {
         return 'laravel-number';
+    }
+
+    /**
+     * @return void
+     */
+    private function registerBladeDirectives(): void
+    {
+
+        Blade::directive('currency', function (string $expression) {
+            return "<?php echo number()->currency($expression); ?>";
+        });
+        Blade::directive('percent', function (string $expression) {
+            return "<?php echo number()->percent($expression); ?>";
+        });
     }
 }

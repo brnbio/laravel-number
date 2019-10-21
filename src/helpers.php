@@ -10,14 +10,12 @@
 
 declare(strict_types=1);
 
-use Brnbio\LaravelNumber\Helper\Helper as NumberHelper;
-
 if (! function_exists('number')) {
     /**
-     * @return NumberHelper
+     * @return \Brnbio\LaravelNumber\Helper\Helper
      */
-    function number(): NumberHelper
+    function number(): \Brnbio\LaravelNumber\Helper\Helper
     {
-        return NumberHelper::getInstance();
+        return \Brnbio\LaravelNumber\Helper\Helper::getInstance();
     }
 }
